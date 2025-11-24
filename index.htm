@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTK Solutions · Portafolio de Proyecto de Inversión</title>
+    <style>
+        :root {
+            --bg-main: #050b12;
+            --bg-alt: #08111c;
+            --card-bg: #0d1624;
+            --accent: #19d4ff;
+            --accent-soft: #5ee6ff;
+            --accent-warm: #ffb15a;
+            --accent-purple: #b57bff;
+            --text-main: #f5f7ff;
+            --text-muted: #a8b0c7;
+            --border-soft: rgba(255,255,255,0.08);
+            --radius-lg: 18px;
+            --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         Roboto, sans-serif;
+            background:
+                radial-gradient(circle at top, #0b1930 0%, #050b12 40%, #020309 100%);
+            color: var(--text-main);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* HEADER / NAVBAR */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            background: rgba(5, 11, 18, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .nav-wrapper {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0.6rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.2rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 10%, #ffe082, #ffb15a, #b57bff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #020309;
+            box-shadow: 0 0 18px rgba(25, 212, 255, 0.7);
+        }
+
+        .brand-text-main {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-soft);
+            letter-spacing: 0.03em;
+        }
+
+        .brand-text-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.3rem;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        nav a {
+            position: relative;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.3rem;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+            transition: width 0.18s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-soft);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 780px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* HERO */
+
+        .hero {
+            padding-top: 5.4rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.6rem 1.6rem 0;
+            text-align: center;
+        }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.25rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(25, 212, 255, 0.5);
+            background: rgba(25, 212, 255, 0.07);
+            font-size: 0.78rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+        }
+
+        .tag-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            box-shadow: 0 0 12px rgba(25, 212, 255, 0.9);
+        }
+
+        .hero-title {
+            margin: 1.3rem 0 0.4rem;
+            font-size: clamp(2rem, 4vw, 2.6rem);
+            letter-spacing: 0.03em;
+            color: var(--accent);
+            text-shadow: 0 0 16px rgba(25, 212, 255, 0.5);
+        }
+
+        .hero-subtitle {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 600;
+            color: var(--accent-warm);
+        }
+
+        .hero-text {
+            margin: 0.8rem auto 1.6rem;
+            max-width: 700px;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.7rem 1.6rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            cursor: pointer;
+            background: none;
+            color: var(--text-main);
+            transition: transform 0.14s ease, box-shadow 0.14s ease,
+                        background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+            color: #020309;
+            box-shadow: 0 12px 28px rgba(25, 212, 255, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 38px rgba(25, 212, 255, 0.6);
+        }
+
+        .btn-outline {
+            border-color: rgba(255,255,255,0.25);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.03);
+            border-color: var(--accent-soft);
+            color: var(--accent-soft);
+        }
+
+        .hero-meta {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 0.9rem;
+        }
+
+        /* SECTIONS BASE */
+
+        section {
+            padding: 3rem 1.6rem;
+        }
+
+        .section-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.45rem;
+            margin-bottom: 0.35rem;
+            color: var(--accent-soft);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .text-card {
+            background: linear-gradient(135deg, #0b1424, #050b12);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            padding: 1.4rem 1.5rem;
+            box-shadow: var(--shadow-soft);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        .text-card strong {
+            color: var(--accent-soft);
+        }
+
+        .text-card ul {
+            padding-left: 1.2rem;
+            margin: 0.4rem 0 0;
+        }
+
+        /* GRID & CARDS */
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 1.5rem;
+        }
+
+        .grid-auto {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.4rem;
+        }
+
+        @media (max-width: 820px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            padding: 1.3rem 1.4rem;
+            font-size: 0.94rem;
+            color: var(--text-muted);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left,
+                        rgba(25,212,255,0.18), transparent 55%);
+            opacity: 0;
+            transition: opacity 0.18s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            color: #e1f4ff;
+        }
+
+        .card small {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent-warm);
+        }
+
+        .pill {
+            display: inline-block;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .list-clean {
+            padding-left: 1.1rem;
+            margin: 0.35rem 0 0;
+        }
+
+        .list-clean li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* HIGHLIGHTS / TIMELINE */
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.4rem;
+        }
+
+        .highlight {
+            padding: 0.9rem 1rem;
+            border-radius: 14px;
+            border: 1px dashed rgba(255,255,255,0.18);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(5,11,18,0.7);
+        }
+
+        .highlight-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            color: var(--accent-soft);
+            margin-bottom: 0.3rem;
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--border-soft);
+            background: #04070f;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 1.6rem 1.6rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+
+        .footer-links a {
+            color: var(--accent-soft);
+            font-weight: 500;
+            font-size: 0.82rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <div class="brand">
+                <div class="brand-logo">RTK</div>
+                <div>
+                    <div class="brand-text-main">Robotiktronikx · RTK Solutions</div>
+                    <div class="brand-text-sub">Portafolio de Proyecto de Inversión</div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#intro">Inicio</a></li>
+                    <li><a href="#about">RTK Solutions</a></li>
+                    <li><a href="#objetivos">Objetivos</a></li>
+                    <li><a href="#mercado">Estudio de Mercado</a></li>
+                    <li><a href="#tecnico">Estudio Técnico</a></li>
+                    <li><a href="#ambiental">Ambiental</a></li>
+                    <li><a href="#financiero">Financiero</a></li>
+                    <li><a href="#financiacion">Financiación</a></li>
+                    <li><a href="#conclusiones">Conclusiones</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero" id="intro">
+            <div class="hero-inner">
+                <div class="tagline">
+                    <span class="tag-dot"></span>
+                    Proyecto de inversión · Portafolio digital
+                </div>
+                <h1 class="hero-title">RTK Solutions – Ecosistema Tecnológico de Robotiktronikx</h1>
+                <p class="hero-subtitle">
+                    Formación tecnológica, desarrollo de software y servicios TI orientados al futuro.
+                </p>
+                <p class="hero-text">
+                    Este portafolio presenta de forma estructurada el <strong>Proyecto de Inversión de RTK Solutions</strong>,
+                    la línea tecnológica de <em>Robotiktronikx</em>. Integra los estudios de mercado, factibilidad
+                    técnica y organizacional, evaluación ambiental, análisis económico-financiero y fuentes de financiación,
+                    con el fin de demostrar la viabilidad integral del proyecto como emprendimiento tecnológico serio,
+                    sostenible y con impacto real.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#objetivos">Ver estructura del proyecto</a>
+                    <a class="btn btn-outline" href="https://robotiktronikx.site" target="_blank" rel="noopener">
+                        Visitar sitio principal de Robotiktronikx
+                    </a>
+                </div>
+                <p class="hero-meta">
+                    Elaborado por <strong>Juan Esteban Villegas Montoya</strong> · Programa de Ingeniería de Sistemas
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: RTK SOLUTIONS -->
+        <section id="about">
+            <div class="section-inner">
+                <h2 class="section-title">¿Qué es RTK Solutions?</h2>
+                <p class="section-subtitle">
+                    Naturaleza, propósito y enfoque del proyecto de inversión.
+                </p>
+                <div class="text-card">
+                    <p>
+                        <strong>RTK Solutions</strong> es un proyecto de inversión que consolida la dimensión tecnológica
+                        de la marca <em>Robotiktronikx</em>. Se concibe como un <strong>ecosistema digital</strong> que integra tres líneas principales:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Formación tecnológica:</strong> cursos, talleres y mentorías en programación,
+                            desarrollo web y móvil, bases de datos, robótica, inteligencia artificial y herramientas digitales.
+                        </li>
+                        <li>
+                            <strong>Servicios TI:</strong> soporte técnico, consultoría, implementación de soluciones,
+                            acompañamiento a emprendimientos y pequeñas empresas en sus procesos de digitalización.
+                        </li>
+                        <li>
+                            <strong>Desarrollo de software a medida:</strong> aplicaciones de escritorio y móviles,
+                            sistemas de gestión, herramientas financieras personales y soluciones específicas según las
+                            necesidades de clientes y aliados.
+                        </li>
+                    </ul>
+                    <p>
+                        La propuesta de valor de RTK Solutions se basa en ofrecer soluciones <strong>accesibles, personalizadas
+                        y de alta calidad</strong>, orientadas a personas y organizaciones que requieren apoyo tecnológico, pero
+                        no cuentan con grandes presupuestos ni infraestructura propia de desarrollo.
+                    </p>
+
+                    <div class="highlights">
+                        <div class="highlight">
+                            <div class="highlight-title">Propósito central</div>
+                            Brindar herramientas tecnológicas y formativas que faciliten el aprendizaje, la productividad
+                            y el crecimiento de proyectos personales, académicos y empresariales.
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-title">Público objetivo</div>
+                            Estudiantes, emprendedores, profesionales independientes y pequeñas empresas que buscan
+                            apoyo en el uso y desarrollo de tecnología.
+                        </div>
+                        <div class="highlight">
+                            <div class="highlight-title">Alcance del proyecto</div>
+                            Inicio con operación local y digital, con proyección nacional mediante formación virtual,
+                            servicios remotos y productos de software escalables.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OBJETIVOS -->
+        <section id="objetivos">
+            <div class="section-inner">
+                <h2 class="section-title">Objetivos del Proyecto</h2>
+                <p class="section-subtitle">
+                    Estructura de objetivos que orientan el diseño y evaluación de RTK Solutions.
+                </p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <span class="pill">Objetivo general</span>
+                        <h3>Consolidar RTK Solutions como proyecto de inversión integral</h3>
+                        <p>
+                            Consolidar y evaluar la viabilidad integral de <strong>RTK Solutions</strong> a partir de los
+                            estudios de mercado, factibilidad técnico–organizacional, evaluación ambiental y análisis
+                            económico–financiero, garantizando una propuesta sostenible, funcional y coherente con las
+                            necesidades de formación y servicios tecnológicos de la población objetivo.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <span class="pill">Objetivos específicos</span>
+                        <ul class="list-clean">
+                            <li>
+                                Identificar las necesidades, preferencias y expectativas de la población objetivo mediante
+                                un estudio de mercado basado en encuestas y análisis cualitativo.
+                            </li>
+                            <li>
+                                Analizar los impactos ambientales asociados al uso de recursos tecnológicos y proponer
+                                un enfoque de operación responsable y sostenible.
+                            </li>
+                            <li>
+                                Determinar la infraestructura, herramientas, procesos y roles necesarios mediante un estudio
+                                técnico y organizacional.
+                            </li>
+                            <li>
+                                Estimar la inversión inicial requerida, los costos de operación, los ingresos proyectados y la
+                                rentabilidad esperada mediante un análisis económico-financiero estructurado.
+                            </li>
+                            <li>
+                                Definir y evaluar las fuentes de financiación más adecuadas para respaldar la implementación
+                                y crecimiento del proyecto.
+                            </li>
+                            <li>
+                                Elaborar conclusiones integradas que permitan tomar decisiones informadas sobre la puesta
+                                en marcha de RTK Solutions como emprendimiento tecnológico.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESTUDIO DE MERCADO -->
+        <section id="mercado">
+            <div class="section-inner">
+                <h2 class="section-title">Estudio de Mercado</h2>
+                <p class="section-subtitle">
+                    Análisis de necesidades, demanda potencial y aceptación del proyecto.
+                </p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <small>Metodología</small>
+                        <h3>Encuesta y análisis de preferencias tecnológicas</h3>
+                        <p>
+                            El estudio de mercado se realizó a partir de una encuesta aplicada a potenciales usuarios de
+                            servicios tecnológicos y cursos de formación. El instrumento permitió caracterizar:
+                        </p>
+                        <ul class="list-clean">
+                            <li>Intereses en temas de programación, desarrollo web, IA, robótica y soporte TI.</li>
+                            <li>
+                                Frecuencia y forma de uso de la tecnología en estudio, trabajo y proyectos personales.
+                            </li>
+                            <li>
+                                Nivel de satisfacción con las ofertas actuales de cursos y servicios tecnológicos disponibles.
+                            </li>
+                            <li>
+                                Disposición a pagar por servicios personalizados y acompañamiento cercano.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <small>Resultados clave</small>
+                        <h3>Demanda y oportunidades identificadas</h3>
+                        <p>
+                            El análisis integral de la encuesta permite concluir que existe una demanda real y creciente
+                            por formación y servicios tecnológicos:
+                        </p>
+                        <ul class="list-clean">
+                            <li>
+                                Alta valoración de cursos prácticos orientados a proyectos reales y al fortalecimiento del
+                                perfil profesional.
+                            </li>
+                            <li>
+                                Interés significativo en herramientas que apoyen el control de finanzas personales,
+                                desarrollo de aplicaciones y creación de portafolios digitales.
+                            </li>
+                            <li>
+                                Preferencia por acompañamiento cercano, resolución de dudas y soporte posterior a la
+                                formación o entrega del software.
+                            </li>
+                            <li>
+                                Predisposición positiva hacia propuestas flexibles, accesibles en precio y con posibilidad
+                                de atención virtual y remota.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-card" style="margin-top:1.6rem;">
+                    <strong>Conclusión del estudio de mercado:</strong>
+                    <p>
+                        El estudio de mercado confirma que <strong>RTK Solutions</strong> responde a una necesidad clara del entorno:
+                        existe una población que busca apoyo tecnológico, formación aplicada y soluciones de software a la medida,
+                        pero que no encuentra opciones suficientemente personalizadas y accesibles. Esto refuerza la pertinencia,
+                        oportunidad y potencial de crecimiento del proyecto.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESTUDIO TÉCNICO Y ORGANIZACIONAL -->
+        <section id="tecnico">
+            <div class="section-inner">
+                <h2 class="section-title">Estudio Técnico y Organizacional</h2>
+                <p class="section-subtitle">
+                    Infraestructura, herramientas y estructura mínima para la operación de RTK Solutions.
+                </p>
+
+                <div class="grid-auto">
+                    <div class="card">
+                        <small>Infraestructura</small>
+                        <h3>Recursos físicos y tecnológicos</h3>
+                        <ul class="list-clean">
+                            <li>Estación de trabajo principal de alto rendimiento para desarrollo y pruebas.</li>
+                            <li>
+                                Conectividad estable de banda ancha, con capacidad para trabajo remoto, reuniones
+                                virtuales y soporte a distancia.
+                            </li>
+                            <li>
+                                Uso de plataformas en la nube para repositorios de código, despliegue de aplicaciones y
+                                respaldo de información (GitHub, servicios cloud, hosting web).
+                            </li>
+                            <li>
+                                Herramientas de desarrollo: entornos para Java, desarrollo web, Android, bases de datos y
+                                diseño de interfaces.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <small>Organización</small>
+                        <h3>Modelo de gestión y roles</h3>
+                        <ul class="list-clean">
+                            <li>
+                                Liderazgo del fundador, quien asume los roles de analista, desarrollador, docente y
+                                coordinador general del proyecto.
+                            </li>
+                            <li>
+                                Posibilidad de vincular colaboradores por proyecto para diseño gráfico, pruebas de
+                                usabilidad o soporte especializado.
+                            </li>
+                            <li>
+                                Gestión por fases: diagnóstico, diseño de solución, desarrollo, pruebas, implementación y
+                                seguimiento post–entrega.
+                            </li>
+                            <li>
+                                Documentación sistemática de proyectos, código y materiales de formación para facilitar
+                                la mejora continua.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <small>Procesos</small>
+                        <h3>Flujo de trabajo propuesto</h3>
+                        <ul class="list-clean">
+                            <li>Recepción de necesidades del cliente o grupo objetivo (formación o software).</li>
+                            <li>Definición de alcance, tiempos, entregables y presupuesto.</li>
+                            <li>Diseño de soluciones tecnológicas o planes de formación personalizados.</li>
+                            <li>Desarrollo, pruebas y ajustes con retroalimentación continua.</li>
+                            <li>Entrega formal, acompañamiento inicial y soporte posterior.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <small>Conclusión técnica</small>
+                        <h3>Suficiencia y coherencia técnica</h3>
+                        <p>
+                            La infraestructura propuesta, junto con el modelo organizacional y los procesos definidos,
+                            permite operar RTK Solutions de forma funcional y escalable. La naturaleza digital del proyecto
+                            facilita la ampliación gradual de servicios, sin requerir inversiones físicas desproporcionadas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVALUACIÓN AMBIENTAL -->
+        <section id="ambiental">
+            <div class="section-inner">
+                <h2 class="section-title">Evaluación Ambiental</h2>
+                <p class="section-subtitle">
+                    Impactos asociados al proyecto y enfoque de sostenibilidad.
+                </p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <small>Identificación de impactos</small>
+                        <h3>Uso de recursos tecnológicos</h3>
+                        <p>
+                            Aunque RTK Solutions es un proyecto principalmente digital, genera ciertos impactos
+                            ambientales relacionados con:
+                        </p>
+                        <ul class="list-clean">
+                            <li>Consumo de energía eléctrica en estaciones de trabajo y equipos.</li>
+                            <li>
+                                Uso y eventual disposición de hardware y periféricos, que requieren manejo responsable
+                                como residuos electrónicos.
+                            </li>
+                            <li>
+                                Huella asociada a servicios en la nube y centros de datos utilizados para almacenamiento y
+                                despliegue de aplicaciones.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <small>Medidas de manejo</small>
+                        <h3>Estrategias de mitigación y buenas prácticas</h3>
+                        <ul class="list-clean">
+                            <li>Uso de equipos eficientes y configuración de planes de energía responsables.</li>
+                            <li>
+                                Aprovechamiento de servicios cloud que incorporan políticas de eficiencia energética y,
+                                cuando sea posible, fuentes renovables.
+                            </li>
+                            <li>
+                                Extensión de la vida útil de equipos mediante mantenimiento preventivo y actualizaciones
+                                de software.
+                            </li>
+                            <li>
+                                Disposición adecuada de residuos electrónicos en puntos autorizados y campañas de
+                                reciclaje tecnológico.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-card" style="margin-top:1.6rem;">
+                    <strong>Conclusión ambiental:</strong>
+                    <p>
+                        La evaluación ambiental concluye que <strong>RTK Solutions</strong> es un proyecto con impactos negativos
+                        directos moderados y controlables, propios del uso de tecnología digital. Mediante la aplicación de
+                        buenas prácticas de consumo energético, mantenimiento y gestión responsable de equipos, es posible
+                        operar de forma ambientalmente viable, aportando además a la formación de usuarios conscientes del
+                        uso responsable de los recursos tecnológicos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ESTUDIO ECONÓMICO Y FINANCIERO -->
+        <section id="financiero">
+            <div class="section-inner">
+                <h2 class="section-title">Estudio Económico y Financiero</h2>
+                <p class="section-subtitle">
+                    Inversión requerida, estructura de costos, ingresos proyectados y rentabilidad esperada.
+                </p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <small>Inversión y costos</small>
+                        <h3>Componentes principales de inversión</h3>
+                        <ul class="list-clean">
+                            <li>
+                                <strong>Inversión inicial en equipos:</strong> computador principal, periféricos, mejoras
+                                de ergonomía y respaldo de energía.
+                            </li>
+                            <li>
+                                <strong>Conectividad y plataformas:</strong> internet, dominios, hosting y herramientas
+                                especializadas de desarrollo cuando se requieran.
+                            </li>
+                            <li>
+                                <strong>Presencia digital:</strong> diseño y mantenimiento del sitio web, portafolios en
+                                línea y material promocional básico.
+                            </li>
+                            <li>
+                                <strong>Costos operativos:</strong> energía, comunicaciones, eventual pago a colaboradores
+                                externos y gastos administrativos mínimos.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <small>Ingresos y proyecciones</small>
+                        <h3>Fuentes de ingreso y perspectivas</h3>
+                        <ul class="list-clean">
+                            <li>
+                                Ingresos por cursos y talleres tecnológicos (individuales o por grupos reducidos).
+                            </li>
+                            <li>
+                                Honorarios por servicios de soporte, asesoría y consultoría en TI.
+                            </li>
+                            <li>
+                                Pagos por desarrollo de aplicaciones, sistemas de gestión y soluciones a medida.
+                            </li>
+                            <li>
+                                Posible comercialización de productos de software propios (por ejemplo, herramientas
+                                de finanzas personales o gestión académica).
+                            </li>
+                        </ul>
+                        <p>
+                            A partir de estas fuentes, se proyecta un flujo de caja progresivo, con recuperación de la
+                            inversión inicial en el mediano plazo si se mantiene una gestión activa de proyectos y
+                            formación continua.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-card" style="margin-top:1.6rem;">
+                    <strong>Conclusión económico–financiera:</strong>
+                    <p>
+                        El análisis económico–financiero indica que <strong>RTK Solutions</strong> es un proyecto con inversión inicial
+                        moderada frente a su potencial de generación de ingresos. La combinación de servicios, formación y
+                        desarrollo de software diversifica las fuentes de entrada económica y reduce la dependencia de un
+                        solo tipo de cliente. Esto favorece la sostenibilidad y la capacidad de adaptación del proyecto a
+                        diferentes contextos y demandas.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FUENTES DE FINANCIACIÓN -->
+        <section id="financiacion">
+            <div class="section-inner">
+                <h2 class="section-title">Fuentes de Financiación del Proyecto</h2>
+                <p class="section-subtitle">
+                    Estrategias para respaldar la puesta en marcha y el crecimiento de RTK Solutions.
+                </p>
+
+                <div class="text-card">
+                    <p>
+                        Para la financiación de <strong>RTK Solutions</strong> se consideran fuentes combinadas que permitan iniciar
+                        con solidez, mantener la autonomía creativa y, a la vez, abrir espacio a aliados estratégicos:
+                    </p>
+
+                    <div class="grid-auto" style="margin-top:1.1rem;">
+                        <div class="card">
+                            <h3>Capital propio</h3>
+                            <p>
+                                Aporte directo del fundador en tiempo, equipos, infraestructura básica y desarrollo del
+                                portafolio inicial de servicios y productos de software.
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Microcréditos y líneas emprendedoras</h3>
+                            <p>
+                                Acceso a créditos para jóvenes emprendedores o pequeñas unidades productivas,
+                                orientados a fortalecer la capacidad tecnológica y la presencia digital del proyecto.
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Programas de apoyo y convocatorias</h3>
+                            <p>
+                                Participación en programas públicos o institucionales (como Fondo Emprender o iniciativas
+                                universitarias) que brindan capital semilla, formación empresarial y acompañamiento.
+                            </p>
+                        </div>
+
+                        <div class="card">
+                            <h3>Alianzas y clientes ancla</h3>
+                            <p>
+                                Establecimiento de acuerdos con instituciones educativas, negocios locales y emprendedores
+                                que requieran soluciones tecnológicas de forma recurrente, garantizando flujos de ingreso
+                                estables.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCLUSIONES -->
+        <section id="conclusiones">
+            <div class="section-inner">
+                <h2 class="section-title">Conclusiones del Proyecto</h2>
+                <p class="section-subtitle">
+                    Síntesis de la viabilidad integral y el aporte de RTK Solutions.
+                </p>
+
+                <div class="text-card">
+                    <ul class="list-clean">
+                        <li>
+                            El estudio de mercado demuestra que existe una demanda clara por formación tecnológica y
+                            servicios de desarrollo de software personalizados, lo que justifica la pertinencia de RTK
+                            Solutions como proyecto de inversión.
+                        </li>
+                        <li>
+                            La infraestructura técnica necesaria es alcanzable y proporcional al alcance del proyecto, lo
+                            que facilita su implementación gradual sin requerir grandes inversiones físicas.
+                        </li>
+                        <li>
+                            Desde el punto de vista ambiental, el proyecto presenta impactos directos moderados y
+                            controlables, que pueden gestionarse de manera responsable mediante buenas prácticas en el
+                            uso de equipos y servicios digitales.
+                        </li>
+                        <li>
+                            El análisis económico–financiero indica que RTK Solutions es potencialmente rentable en el
+                            mediano plazo, con capacidad de diversificar sus ingresos y adaptarse a nuevas oportunidades.
+                        </li>
+                        <li>
+                            Las fuentes de financiación consideradas permiten articular capital propio, programas de apoyo
+                            y alianzas estratégicas, ampliando las posibilidades de crecimiento sin perder la identidad
+                            del proyecto.
+                        </li>
+                        <li>
+                            En conjunto, los estudios realizados respaldan que <strong>RTK Solutions</strong> es un proyecto
+                            <strong>viable, coherente y alineado</strong> con las tendencias actuales de uso de tecnología, así como con la
+                            trayectoria académica y profesional de su fundador, proyectando a la marca
+                            <em>Robotiktronikx</em> como un actor relevante en el ámbito de la educación y los servicios digitales.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                © 2025 Robotiktronikx · RTK Solutions — Portafolio de Proyecto de Inversión.
+            </div>
+            <div class="footer-links">
+                <a href="https://robotiktronikx.site" target="_blank" rel="noopener">robotiktronikx.site</a>
+                <a href="mailto:robotiktronica@gmail.com">robotiktronica@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
